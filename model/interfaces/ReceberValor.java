@@ -1,6 +1,6 @@
 package interfaces;
 
-interface ReceberValor {
+public interface ReceberValor {
 
     public void receber(Double valor);
 }
