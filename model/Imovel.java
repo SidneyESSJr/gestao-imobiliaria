@@ -68,6 +68,8 @@ public abstract class Imovel {
         this.bathrooms = bathrooms;
     }
 
+    public abstract double calculateRent();
+
     @Override
     public int hashCode() {
         final int prime = 31;
