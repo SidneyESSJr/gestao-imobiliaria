@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Imovel {
 
     private int code;
@@ -6,18 +9,23 @@ public abstract class Imovel {
     private int parkingSpaces;
     private int bedrooms;
     private int bathrooms;
+    private Proprietario proprietario;
+    private List<Locacao> locacoes = new ArrayList<>();
 
     public Imovel(int code) {
 
     }
 
-    public Imovel(int code, String address, Double rentalValue, int parkingSpaces, int bedrooms, int bathrooms) {
+    public Imovel(int code, String address, Double rentalValue, int parkingSpaces, int bedrooms, int bathrooms,
+            Proprietario proprietario) {
         this.code = code;
         this.address = address;
         this.rentalValue = rentalValue;
         this.parkingSpaces = parkingSpaces;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
+        setProprietario(proprietario);
+        proprietario.addImovel(this);
     }
 
     public int getCode() {
@@ -69,6 +77,23 @@ public abstract class Imovel {
     }
 
     public abstract double calculateRent();
+
+    public void addLocacao(Locacao locacao) {
+        this.locacoes.add(locacao);
+    }
+
+    public List<Locacao> list() {
+        return locacoes;
+    }
+
+    public Proprietario getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(Proprietario proprietario) {
+        this.proprietario = proprietario;
+        proprietario.addImovel(this);
+    }
 
     @Override
     public int hashCode() {
